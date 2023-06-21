@@ -30,10 +30,17 @@ default_node_pool {
     name       = "default"
     node_count = var.agentnode
     vm_size    = var.size
+    vnet_subnet_id  = azurerm_subnet.k8s.id
+  }
+network_profile {
+    network_plugin = "azure"
+    network_policy = "azure"
+    service_cidr = "10.0.2.0/24"
+    dns_service_ip = "10.0.2.10"
+    docker_bridge_cidr = "172.17.0.1/16"
   }
 service_principal {
     client_id     = var.client_id
     client_secret = var.client_secret
   }
 }
-
