@@ -13,6 +13,13 @@ steps:
 - task: TerraformCLI@0
   inputs:
     command: 'init'
+    backendType: 'azurerm'
+    backendServiceArm: 'Azurek8sconnection'
+    backendAzureRmSubscriptionId: 'b3c7ce23-4463-41af-b0ee-2aad6de340b9'
+    backendAzureRmResourceGroupName: 'Azurevms'
+    backendAzureRmStorageAccountName: 'mystatefiles'
+    backendAzureRmContainerName: 'statefile'
+    backendAzureRmKey: 'fkniaOkaGytj6IRczpIANvoo9y1k+ajr46ulas3luF7hPFM+qlFseo1hWqANvnM88YQGqrqwuENe+AStjfCDvg=='
     allowTelemetryCollection: false
 - task: TerraformCLI@0
   inputs:
