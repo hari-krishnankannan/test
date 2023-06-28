@@ -1,24 +1,24 @@
 provider "azurerm" {
 
-data "azurerm_key_vault" "mysecrets" {
+data "azurerm_key_vault" "mysecretsfiles" {
   name                = "mysecretsfiles"
   resource_group_name = "Azurevms"
 }
 data "azurerm_key_vault_secret" "subscriptionIDs" {
   name         = "subscriptionID"
-  key_vault_id = data.azurerm_key_vault.mysecrets.id
+  key_vault_id = data.azurerm_key_vault.mysecretsfiles.id
 }
 data "azurerm_key_vault_secret" "tenantids" {
   name         = "tenantid"
-  key_vault_id = data.azurerm_key_vault.mysecrets.id
+  key_vault_id = data.azurerm_key_vault.mysecretsfiles.id
 }
 data "azurerm_key_vault_secret" "clientids" {
   name         = "clientid"
-  key_vault_id = data.azurerm_key_vault.mysecrets.id
+  key_vault_id = data.azurerm_key_vault.mysecretsfiles.id
 }
 data "azurerm_key_vault_secret" "clientSecrets" {
   name         = "clientSecret"
-  key_vault_id = data.azurerm_key_vault.mysecrets.id
+  key_vault_id = data.azurerm_key_vault.mysecretsfiles.id
 }
   subscription_id = data.azurerm_key_vault_secret.subscriptionID.value
   client_id       = data.azurerm_key_vault_secret.clientid.value
