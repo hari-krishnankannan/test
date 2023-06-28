@@ -15,4 +15,4 @@ variable "size" {
 }
 variable "agentnode" {
   default = "1"
-
+}
