@@ -29,7 +29,7 @@ steps:
     allowTelemetryCollection: false
 - task: TerraformCLI@0
   inputs:
-    command: 'apply'
+    command: 'destroy'
     environmentServiceName: 'Azurek8sconnection'
     providerAzureRmSubscriptionId: 'b3c7ce23-4463-41af-b0ee-2aad6de340b9'
     allowTelemetryCollection: false
