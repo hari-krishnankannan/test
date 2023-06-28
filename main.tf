@@ -5,6 +5,14 @@ provider "azurerm" {
   tenant_id       = var.tenant_id
 features {}
 }
+terraform {
+backend "azurerm" {
+resource_group_name = "Azurevms"
+storage_account_name = "mystatefiles"
+container_name = "statefile"
+key = "ei5+DK57QOuIYBJCXra1Q7Q0ZIgBPvkKi53ODWckTE5+3E+a4aYQNjFQPGUz5CFooKGXmhGG8mZl+AStL8xSww=="
+}
+}
 resource "azurerm_resource_group" "k8s" {
   name     = var.resourcename
   location = var.location
