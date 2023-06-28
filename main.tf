@@ -4,19 +4,19 @@ data "azurerm_key_vault" "mysecretsfiles" {
 }
 data "azurerm_key_vault_secret" "subscriptionID" {
   name         = "subscriptionID"
-  key_vault_id = data.azurerm_key_vault.existing.id
+  key_vault_id = data.azurerm_key_vault.mysecretsfiles.id
 }
 data "azurerm_key_vault_secret" "tenantid" {
   name         = "tenantid"
-  key_vault_id = data.azurerm_key_vault.existing.id
+  key_vault_id = data.azurerm_key_vault.mysecretsfiles.id
 }
 data "azurerm_key_vault_secret" "clientid" {
   name         = "clientid"
-  key_vault_id = data.azurerm_key_vault.existing.id
+  key_vault_id = data.azurerm_key_vault.mysecretsfiles.id
 }
 data "azurerm_key_vault_secret" "clientSecret" {
   name         = "clientSecret"
-  key_vault_id = data.azurerm_key_vault.existing.id
+  key_vault_id = data.azurerm_key_vault.mysecretsfiles.id
 }
 provider "azurerm" {
   subscription_id = data.azurerm_key_vault_secret.subscriptionID.value
