@@ -1,0 +1,37 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: TerraformCLI@0
+  inputs:
+    command: 'init'
+    backendType: 'azurerm'
+    backendServiceArm: 'Azurek8sconnection'
+    backendAzureRmSubscriptionId: 'b3c7ce23-4463-41af-b0ee-2aad6de340b9'
+    backendAzureRmResourceGroupName: 'Azurevms'
+    backendAzureRmStorageAccountName: 'mystatefiles'
+    backendAzureRmContainerName: 'statefile'
+    backendAzureRmKey: 'ei5+DK57QOuIYBJCXra1Q7Q0ZIgBPvkKi53ODWckTE5+3E+a4aYQNjFQPGUz5CFooKGXmhGG8mZl+AStL8xSww=='
+    allowTelemetryCollection: false
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'plan'
+    environmentServiceName: 'Azurek8sconnection'
+    providerAzureRmSubscriptionId: 'b3c7ce23-4463-41af-b0ee-2aad6de340b9'
+    allowTelemetryCollection: false
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    environmentServiceName: 'Azurek8sconnection'
+    providerAzureRmSubscriptionId: 'b3c7ce23-4463-41af-b0ee-2aad6de340b9'
+    allowTelemetryCollection: true
