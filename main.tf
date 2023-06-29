@@ -1,3 +1,10 @@
+provider "azurerm" {
+  subscription_id = data.azurerm_key_vault_secret.subscriptionID.value
+  client_id       = data.azurerm_key_vault_secret.clientid.value
+  client_secret   = data.azurerm_key_vault_secret.clientSecret.value
+  tenant_id       = data.azurerm_key_vault_secret.tenantid.value
+features {}
+}
 data "azurerm_key_vault" "mysecretsfiles" {
   name                = "mysecretsfiles"
   resource_group_name = "Azurevms"
@@ -18,13 +25,7 @@ data "azurerm_key_vault_secret" "clientSecret" {
   name         = "clientSecret"
   key_vault_id = data.azurerm_key_vault.mysecretsfiles.id
 }
-provider "azurerm" {
-  subscription_id = data.azurerm_key_vault_secret.subscriptionID.value
-  client_id       = data.azurerm_key_vault_secret.clientid.value
-  client_secret   = data.azurerm_key_vault_secret.clientSecret.value
-  tenant_id       = data.azurerm_key_vault_secret.tenantid.value
-features {}
-}
+
 terraform {
 backend "azurerm" {
 resource_group_name = "Azurevms"
